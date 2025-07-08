@@ -1,4 +1,4 @@
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Pygame](https://img.shields.io/badge/PyGame-28B33F?style=for-the-badge&logo=&logoColor=white)
 
 ### Fallout Terminal
 
