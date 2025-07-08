@@ -6,7 +6,7 @@ from modules.passwordgame import run_password_game
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
-DEVMODE = False
+DEVMODE = True
 MAINVOL = 1
 DOOR = "CLOSED"
 
@@ -31,7 +31,7 @@ try:
     pygame.mixer.pre_init(frequency=22050, size=-16, channels=1, buffer=1024)
     pygame.mixer.init()
 except pygame.error as e:
-    print(f"⚠️  Sound could not be initialized: {e}")
+    print(f"⚠️  Sound could not be initialized: ⚠️  Der Ton konnte nicht initialisiert werden: {e}")
     SOUND_ENABLED = False
 
 if SOUND_ENABLED:
@@ -110,9 +110,11 @@ def open_menu():
 [2.   Saf»y Rep''rts       ]
 [3.   Foreman's Log        ]
 [4.   Security Door Control]
-[5.   Play Tetris          ]
-[6.   Play Snake           ]
-[7.   Close Terminal       ]
+[5.   Protectron Control   ]
+[6.   Close Terminal       ]
+
+!! HOLOTAPE DETECTED - E TO LOAD !!
+
 
 """
     play_Clicking()
@@ -123,7 +125,7 @@ def open_menu():
     while True:
         try:
             command = get_green_input("> ").strip().lower()
-            if command == "7":
+            if command == "6":
                 print_green_text("closing Terminal...")
                 time.sleep(2)
                 exit()
@@ -136,14 +138,13 @@ def open_menu():
             elif command == "4":
                 open_4()
             elif command == "5":
-                play_tetris()
-            elif command == "6":
-                play_snake()
-
+                open_5()
+            elif command == "e":
+                holotape_directory_menu()
+                break
             else:
                 print_green_text("unknown command\nPress Enter...")
                 input()
-                open_menu()
         except (EOFError, KeyboardInterrupt):
             break
 
@@ -359,6 +360,92 @@ def load_and_display_md(filepath):
     except FileNotFoundError:
         print_green_text(f"File '{filepath}' not found.")
 
+# ============= New Menus ===================
+def holotape_detection_menu():
+    clear_screen()
+    detection_menu_text = """
+========== ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM ==========
+============ COPYRIGHT 2075-2077 ROBCO INDUSTRIES =============
+
+Initialising...
+Handshake started...
+Handshake successful...
+Keyboard connected...
+Holotape detected...
+Command?
+
+[1. Continue to Terminal ]
+[2. Load Holotape        ]
+
+"""
+    play_Clicking()
+    print_green_text(detection_menu_text)
+    Clicking.stop()
+    play_Clack()
+
+    while True:
+        try:
+            command = get_green_input("> ").strip().lower()
+            if command == "1":
+                open_menu()
+                break
+            elif command == "2":
+                holotape_directory_menu()
+                break
+            else:
+                print_green_text("Unknown command\nPress Enter...")
+                input()
+        except (EOFError, KeyboardInterrupt):
+            break
+
+def holotape_directory_menu():
+    clear_screen()
+    holotape_menu_text = """
+========== ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM ==========
+============ COPYRIGHT 2075-2077 ROBCO INDUSTRIES =============
+==================== HOLOTAPE DIRECTORY =======================
+
+[  HOLOTAPE DIRECTORY  ]
+[1.   Play Tetris      ]
+[2.   Play Snake       ]
+[3.   Play Wastelander ]
+[4.   CORRUPTED        ]
+[5.   REMOVE HOLOTAPE  ]
+
+"""
+    play_Clicking()
+    print_green_text(holotape_menu_text)
+    Clicking.stop()
+    play_Clack()
+
+    while True:
+        try:
+            command = get_green_input("> ").strip().lower()
+            if command == "1":
+                play_tetris()
+            elif command == "2":
+                play_snake()
+            elif command == "3":
+                clear_screen()
+                print_green_text("Launching Wastelander...\n")
+                time.sleep(1)
+                print_green_text("\nReturning to ROBCO Terminal...")
+                time.sleep(2)
+                holotape_detection_menu()
+            elif command == "4":
+                clear_screen()
+                print_green_text("Error: HOLOTAPE DATA CORRUPTED.\n")
+                time.sleep(2)
+                holotape_directory_menu()
+            elif command == "5" or command == "":
+                holotape_detection_menu()
+            else:
+                print_green_text("Unknown command\nPress Enter...")
+                input()
+        except (EOFError, KeyboardInterrupt):
+            break
+
+# ============= Main ===================
 def main():
     clear_screen()
     welcome_message = """
@@ -370,48 +457,32 @@ Password required
 
 Press Enter to continue...
 """
-    terminal_text = """
-Initializing...
-
-[Initializing]
-[Loading System...]
-[Starting Protocol...]
-[Connecting to Database...]
-
-CONNECTED
-"""
     play_poweron()
     print_green_text(welcome_message)
     input()
     if not DEVMODE:
         run_password_game()
-    else:
-        clear_screen()
-        play_Clicking()
-        print_green_text(terminal_text)
-        if not DEVMODE:
-            time.sleep(2)
-    open_menu()
+
+    holotape_detection_menu()
 
 def play_tetris():
     clear_screen()
     print_green_text("Launching Tetris...\n")
     time.sleep(1)
     os.system(f"{sys.executable} tetris_game.py")
-    clear_screen()
     print_green_text("\nReturning to ROBCO Terminal...")
     time.sleep(2)
-    open_menu()
+    holotape_detection_menu()
 
 def play_snake():
     clear_screen()
     print_green_text("Launching Snake...\n")
     time.sleep(1)
     os.system(f"{sys.executable} snake_game.py")
-    clear_screen()
     print_green_text("\nReturning to ROBCO Terminal...")
     time.sleep(2)
-    open_menu()
+    holotape_detection_menu()
+
 
 if __name__ == "__main__":
     main()
