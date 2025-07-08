@@ -6,7 +6,7 @@ from modules.passwordgame import run_password_game
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
-DEVMODE = True
+DEVMODE = False
 MAINVOL = 1
 DOOR = "CLOSED"
 
