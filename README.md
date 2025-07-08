@@ -15,23 +15,35 @@ to enter the menu.
 You need python3 for this project:
 python3: https://www.python.org/downloads/
 
-# Modules
-pygame: apt install python3-pygame
+# Required Modules
+pygame: 
+``` apt install python3-pygame ```
 
-Enjoy :)
+# Features
+- Password hacking game once you start the terminal
+- Pre-boot screen allowing you to "insert" a holotape full of games
+- Working Tetris and Snake style game in the Fallout asthetic with MUSIC!
+- Pre written log entries
+- The ability to create and save new log entries
+- Activate security doors and protectrons Just like in game!
 
-Screenshots
+# Screenshots
 
 
-![Gameplay1][screenshot_menu]
+![Gameplay1][screenshot_password]
 
-![Gameplay2][screenshot_passwordgame]
+![Gameplay2][screenshot_menub]
 
 ![Gameplay3][screenshot_terminal_entry]
 
-![Gameplay4][screenshot_doormenu]
+![Gameplay4][screenshot_holotape]
 
-[screenshot_menu]: images/screenshot_menu.png
-[screenshot_passwordgame]: images/screenshot_passwordgame.png
-[screenshot_terminal_entry]: images/screenshot_terminal_entry.png
+[screenshot_menub]: images/screenshot_menu-black.png
+[screenshot_password]: images/screenshot_password.png
+[screenshot_holotape]: images/screenshot_holotape.png
+[screenshot_terminal_entry]: images/screenshot_log.png
 [screenshot_doormenu]: images/screenshot_doormenu.png
+
+
+# License
+Apachee 2.0
